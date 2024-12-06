@@ -1,0 +1,267 @@
+.navBar{
+    margin-top: 54px;
+    padding: 0 16px;
+    @include flex(row, space-between, center);
+    position: absolute;
+    width: 100%;
+    .logo{
+        width: 51px;
+        height: auto;
+    }
+    .logoDesktop{
+        display: none
+    }
+    .desktopMenu{
+        display: none;
+    }
+    .iconContainer{
+        @include flex(row, space-between, center, nowrap, 10px);
+        .icon{
+            svg{
+                height: 26px;
+                width: auto;
+                transition: all 0.3s ease;
+            }
+        }
+        .burgerIcon {
+            z-index: +15;
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 20px;
+            .line {
+                position: absolute;
+                width: 100%;
+                height: 2.5px;
+                background-color: $white;
+                border-radius: 2px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                &.line1 {
+                top: 0;
+                }
+                &.line2 {
+                top: 50%;
+                transform: translateY(-50%);
+                }
+                &.line3 {
+                bottom: 0; 
+                }
+            }
+            &.toggled {
+                .line1 {
+                    transform: translateY(9px) rotate(45deg);
+                }
+                .line2 {
+                    opacity: 0; 
+                }
+                .line3 {
+                    transform: translateY(-9px) rotate(-45deg);
+                }
+            }
+        }
+        .burgerIcon{
+            z-index: +15;
+        }
+    }
+    .burgerContainer{
+        height: 100vh;
+        width: 110vh;
+        overflow: hidden;
+        top: -54px;
+        right: 0;
+        position: absolute;
+        .burgerMenu{
+            background-color: $orange;
+            height: 100vh;
+            width: 80vw;
+            position: fixed;
+            top: 0;
+            right: 0;
+            transform: translateX(110%);
+            @include center-flex-column(40px);
+            z-index: +11;
+            transition: all 0.3s ease;
+            a{
+                color: $white;
+                font-size: 2rem;
+                font-family: 'Montserrat', serif;
+                font-weight: 700;
+            }
+            .burgerMenuIcons{
+                @include flex($justify: space-between, $align: center, $gap: 28px);
+                .icon{
+                    svg{
+                        height: 38px;
+                        width: auto;
+                    }
+                }
+            }
+        }
+        .here{
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+    }
+    @media (min-width: 479px) {
+        position: inherit;
+        background-color: $orange;
+        margin: 0;
+        height: 100px;
+        padding: 0 60px;
+        .logo{
+            display: none;
+        }
+        .logoDesktop{
+            height: auto;
+            width: 150px;
+            display: block;
+        }
+        .desktopMenu{
+            @include flex($justify: space-evenly, $align: center, $wrap: nowrap, $gap: 50px);
+            a{
+                color: $white;
+                font-family: 'Montserrat', serif;
+                font-weight: 800;
+                font-size: 0.8rem;
+                position: relative;
+                overflow: hidden;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: -100%; 
+                    width: 100%;
+                    height: 2px;
+                    background-color: $white;
+                    transition: all 0.3s ease;
+                }
+                &:hover::after{
+                    transition: all 0.3s ease;
+                    left: 0;
+                }
+                &:nth-of-type(5)::after {
+                    content: none;
+                }
+            }
+            #sign{
+                border-radius: 999px;
+                border: solid 1px $white;
+                padding: 4px 16px;
+                transition: all 0.3s ease;
+                position: relative;
+                &::after{
+                    content: 'SIGN IN';
+                    color: $orange;
+                    position: absolute;
+                    bottom: 0;
+                    left: -100%; 
+                    width: 100%;
+                    height: 100%;
+                    background-color: $white;
+                    transition: all 0.3s ease;
+                    @include center-flex-column;
+                    border-radius: 999px;
+                }
+                &:hover::after{
+                    transition: all 0.3s ease;
+                    left: 0;
+                }
+            }
+        }
+        .iconContainer{
+            gap: 20px;
+            .icon{
+                cursor: pointer;
+            }
+        }
+        .burgerContainer{
+            display: none;
+        }
+    }
+}
+.footer{
+    background-color: $black;
+    color: $white;
+    padding: 40px 36px;
+    .footerLinks{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-bottom: 40px;
+        .linkSection{
+            .footerTitle{
+                cursor: pointer;
+                text-align: left;
+                font-family: 'Montserrat Alternates', serif;
+                font-weight: 800;
+                word-spacing: 3px;
+                margin-bottom: 10px;
+                font-size: 1.1rem;
+            }
+            .footerP{
+                cursor: pointer;
+                text-align: left;
+                font-size: 0.8rem;
+                font-family: 'Montserrat Alternates', serif;
+                font-weight: 500;
+                margin-bottom: 5px;
+            }
+        }
+    }
+    .footerMedia{
+        @include flex($align: center, $gap: 20px);
+        .footerTitle{
+            text-align: left;
+            font-family: 'Montserrat Alternates', serif;
+            font-weight: 800;
+            margin-right: 20px;
+        }
+        svg{
+            cursor: pointer;
+            fill: $white;
+        }
+    }
+    @media (min-width: 479px) {
+        padding: 170px 60px 100px 60px;
+        .footerLinks{
+            @include flex($justify: space-between);
+            .linkSection{
+                .footerTitle{
+                    margin-bottom: 10px;
+                    font-size: 1.8rem;
+                }
+                .footerP{
+                    text-align: left;
+                    font-size: 1.1rem;
+                    margin-bottom: 5px;
+                    overflow: hidden;
+                    position: relative;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: -100%; 
+                        width: 100%;
+                        height: 2px;
+                        background-color: $white;
+                        transition: all 0.3s ease;
+                    }
+                    &:hover::after{
+                        transition: all 0.3s ease;
+                        left: 0;
+                    }
+                }
+            }
+        }
+        .footerMedia{
+            @include flex($justify: flex-end, $gap: 20px);
+            .footerTitle{
+                font-size: 1.4rem;
+                margin-right: 20px;
+            }
+            svg{
+                transform: scale(1.2);
+            }
+        }
+    }
+}

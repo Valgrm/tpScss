@@ -1,0 +1,40 @@
+
+@mixin bg-image($image-path) {
+    background-image: url($image-path);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+  
+    @if $gap != 0 {
+      gap: $gap;
+    }
+  }
+
+  @mixin center-flex-column($gap: 0) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin button($background-color: $black) {
+  font-family: 'Montserrat Alternates', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background-color: $background-color;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  color: $white;
+}
+  
